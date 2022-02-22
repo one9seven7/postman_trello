@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "eea0aba4-89a4-4029-aab4-bbcea505149a",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json()\r",
+							"pm.globals.set(\"trelloBrId\", response.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/boards/?name={Shoping_list}",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{Shoping_list}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All boards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/members/me/boards",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"members",
+						"me",
+						"boards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/boards/{{trelloBrId}}",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"boards",
+						"{{trelloBrId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/boards/{{trelloBrId}}?name=(Shoping_list_for_today)",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"boards",
+						"{{trelloBrId}}"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "(Shoping_list_for_today)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Lists on a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json()\r",
+							"pm.globals.set(\"trelloLiId\", response.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{trello-url}}/boards/{{trelloBrId}}/lists",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"boards",
+						"{{trelloBrId}}",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/lists/6214a496c76c8261adf86c9d?name=Lidl",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"lists",
+						"6214a496c76c8261adf86c9d"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Lidl"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{trello-url}}/cards?name=owoce&idList=6214a496c76c8261adf86c9d",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"cards"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "owoce"
+						},
+						{
+							"key": "idList",
+							"value": "6214a496c76c8261adf86c9d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/boards/{{trelloBrId}}",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"boards",
+						"{{trelloBrId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete confirmation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{trello-url}}/boards/{{trelloBrId}}",
+					"host": [
+						"{{trello-url}}"
+					],
+					"path": [
+						"boards",
+						"{{trelloBrId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth1",
+		"oauth1": [
+			{
+				"key": "consumerSecret",
+				"value": "07a6cd6c6fee87c45f662b4037553f8f501d41a9a773c5c64c8c1cfbb42ba1b1",
+				"type": "string"
+			},
+			{
+				"key": "token",
+				"value": "56a96546cedcbd62feeb9d486985489f6b9b38501feadbc6d3e4071a4be241a1",
+				"type": "string"
+			},
+			{
+				"key": "consumerKey",
+				"value": "4953a8ee319464e08ab1430c60ad697f",
+				"type": "string"
+			},
+			{
+				"key": "signatureMethod",
+				"value": "HMAC-SHA1",
+				"type": "string"
+			},
+			{
+				"key": "version",
+				"value": "1.0",
+				"type": "string"
+			},
+			{
+				"key": "addParamsToHeader",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "addEmptyParamsToSign",
+				"value": false,
+				"type": "boolean"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
